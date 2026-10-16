@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import {
   ArrowDown,
   Terminal,
-  Download,
   Mail,
   Zap,
   Cpu,
@@ -42,61 +41,63 @@ export default function Hero({ onOpenTerminal }: HeroProps) {
       <div className="max-w-6xl mx-auto w-full">
         {/* Availability Badge */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill mb-6 border border-cyan-500/30 shadow-[0_0_20px_rgba(0,242,254,0.15)]"
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--ink-2)] border border-[var(--rule)] mb-6 shadow-sm"
         >
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--ok)] opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--ok)]"></span>
           </span>
-          <span className="text-xs font-mono text-cyan-200 tracking-wide">
+          <span className="text-xs font-mono text-[var(--bone)] tracking-wide">
             {personalData.status.text}
           </span>
         </motion.div>
 
-        {/* Main Title & Role */}
+        {/* Main Title & Role in Instrument Serif */}
         <div className="space-y-4 max-w-4xl">
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-display text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-[var(--bone)]"
           >
-            <span className="text-white">Hi, I&apos;m </span>
-            <span className="text-hologram inline-block">{personalData.name}</span>
+            <span className="text-[var(--bone-dim)]">Hi, I&apos;m </span>
+            <em className="text-[var(--bone)] not-italic underline decoration-[var(--amber)] decoration-wavy decoration-1 underline-offset-8">
+              {personalData.name}
+            </em>
           </motion.h1>
 
-          {/* Dynamic Animated Subtitle */}
+          {/* Dynamic Animated Subtitle in Martian Mono */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="h-10 sm:h-12 flex items-center"
           >
             <motion.p
               key={roleIndex}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4 }}
-              className="text-lg sm:text-2xl text-slate-300 font-mono flex items-center gap-2"
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.35 }}
+              className="text-base sm:text-xl text-[var(--bone)] font-mono flex items-center gap-2"
             >
-              <span className="text-cyan-400 font-bold">&gt;</span>
+              <span className="text-[var(--amber)] font-bold">&gt;</span>
               <span>{roles[roleIndex]}</span>
             </motion.p>
           </motion.div>
 
           {/* Description */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl pt-2"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-xs sm:text-sm text-[var(--bone-dim)] leading-relaxed max-w-2xl pt-2 font-mono"
           >
             Third-year Computer Engineering student at{" "}
-            <span className="text-white font-medium">KJ Somaiya</span>. Specialized in building
+            <span className="text-[var(--bone)] font-semibold">KJ Somaiya</span>. Specialized in building
             fault-tolerant distributed architectures, high-concurrency microservices in Go, and robust cloud
             infrastructure.
           </motion.p>
@@ -104,89 +105,81 @@ export default function Hero({ onOpenTerminal }: HeroProps) {
 
         {/* Action CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-wrap items-center gap-3.5 pt-8"
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex flex-wrap items-center gap-3 pt-7 font-mono"
         >
           <a
             href="#projects"
-            className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-semibold text-sm tracking-wide shadow-[0_0_25px_rgba(0,242,254,0.35)] hover:shadow-[0_0_35px_rgba(0,242,254,0.55)] transition-all flex items-center gap-2 group"
+            className="px-5 py-2.5 rounded-lg bg-[var(--amber)] text-black font-semibold text-xs tracking-wider uppercase hover:bg-[#ff733f] shadow-[0_0_25px_rgba(255,90,31,0.25)] transition-all flex items-center gap-2 group"
           >
             <span>Explore Systems</span>
-            <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+            <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-1 transition-transform" />
           </a>
 
-          <a
-            href="/resume.pdf"
-            download="Arnav_Mahajan_Resume.pdf"
-            className="px-5 py-3 rounded-xl glass-panel text-slate-200 hover:text-white border border-white/10 hover:border-cyan-500/40 text-sm font-medium transition-all flex items-center gap-2 shadow-lg"
-          >
-            <Download className="w-4 h-4 text-cyan-400" />
-            <span>Download Resume</span>
-          </a>
 
           <button
             onClick={onOpenTerminal}
-            className="px-4 py-3 rounded-xl glass-panel text-slate-300 hover:text-cyan-300 border border-white/10 hover:border-cyan-500/30 text-sm font-mono transition-all flex items-center gap-2"
+            className="px-3.5 py-2.5 rounded-lg bg-[var(--ink-2)] border border-[var(--rule)] text-[var(--bone-dim)] hover:text-[var(--bone)] hover:border-[var(--bone-dim)] text-xs transition-all flex items-center gap-2"
           >
-            <Terminal className="w-4 h-4 text-emerald-400" />
+            <Terminal className="w-3.5 h-3.5 text-[var(--ok)]" />
             <span>CLI HUD</span>
           </button>
 
           {/* Social Links */}
-          <div className="flex items-center gap-2 pl-2">
+          <div className="flex items-center gap-2 pl-1">
             <a
               href={personalData.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-xl glass-panel text-slate-400 hover:text-white hover:border-white/20 transition-all"
+              className="p-2.5 rounded-lg bg-[var(--ink-2)] border border-[var(--rule)] text-[var(--bone-dim)] hover:text-[var(--bone)] hover:border-[var(--bone-dim)] transition-all"
               aria-label="GitHub Profile"
             >
-              <GithubIcon className="w-4 h-4" />
+              <GithubIcon className="w-3.5 h-3.5" />
             </a>
             <a
               href={personalData.socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-xl glass-panel text-slate-400 hover:text-cyan-300 hover:border-cyan-500/30 transition-all"
+              className="p-2.5 rounded-lg bg-[var(--ink-2)] border border-[var(--rule)] text-[var(--bone-dim)] hover:text-[var(--amber)] hover:border-[var(--amber)]/40 transition-all"
               aria-label="LinkedIn Profile"
             >
-              <LinkedinIcon className="w-4 h-4" />
+              <LinkedinIcon className="w-3.5 h-3.5" />
             </a>
             <a
               href={personalData.socials.email}
-              className="p-3 rounded-xl glass-panel text-slate-400 hover:text-violet-300 hover:border-violet-500/30 transition-all"
+              className="p-2.5 rounded-lg bg-[var(--ink-2)] border border-[var(--rule)] text-[var(--bone-dim)] hover:text-[var(--ok)] hover:border-[var(--ok)]/40 transition-all"
               aria-label="Email Me"
             >
-              <Mail className="w-4 h-4" />
+              <Mail className="w-3.5 h-3.5" />
             </a>
           </div>
         </motion.div>
 
-        {/* Key Metrics 3D Bento Strip */}
+        {/* Key Metrics Strip with Instrument Serif Numbers */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-14"
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-12"
         >
           {personalData.metrics.map((metric, i) => (
-            <Card3D key={metric.label} glowColor={i === 0 ? "cyan" : i === 1 ? "violet" : i === 2 ? "emerald" : "amber"}>
+            <Card3D key={metric.label} glowColor={i === 0 ? "amber" : i === 1 ? "lime" : i === 2 ? "amber" : "bone"}>
               <div className="p-4 sm:p-5 flex flex-col justify-between h-full">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono text-slate-400 tracking-wider uppercase">
+                  <span className="text-[10px] font-mono text-[var(--bone-dim)] tracking-wider uppercase">
                     {metric.label}
                   </span>
-                  {i === 0 && <Cpu className="w-4 h-4 text-cyan-400" />}
-                  {i === 1 && <Zap className="w-4 h-4 text-violet-400" />}
-                  {i === 2 && <Layers className="w-4 h-4 text-emerald-400" />}
-                  {i === 3 && <Sparkles className="w-4 h-4 text-amber-400" />}
+                  {i === 0 && <Cpu className="w-3.5 h-3.5 text-[var(--amber)]" />}
+                  {i === 1 && <Zap className="w-3.5 h-3.5 text-[var(--ok)]" />}
+                  {i === 2 && <Layers className="w-3.5 h-3.5 text-[var(--amber)]" />}
+                  {i === 3 && <Sparkles className="w-3.5 h-3.5 text-[var(--bone)]" />}
                 </div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono tracking-tight">
+                <div className="font-display text-3xl sm:text-4xl font-normal text-[var(--bone)] tracking-tight">
                   {metric.value}
                 </div>
-                <p className="text-xs text-slate-400 mt-1 font-sans">
+                <p className="text-[11px] text-[var(--bone-dim)] mt-1 font-mono">
                   {metric.description}
                 </p>
               </div>

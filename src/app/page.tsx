@@ -18,7 +18,7 @@ export default function Home() {
   const [terminalOpen, setTerminalOpen] = useState(false);
 
   return (
-    <main className="relative min-h-screen bg-[#070913] text-slate-100 selection:bg-cyan-500/30 selection:text-white">
+    <main className="relative min-h-screen bg-[var(--ink)] text-[var(--bone)] font-mono selection:bg-[var(--amber)] selection:text-black">
       {/* 3D Interactive Particle Constellation Canvas */}
       <Canvas3D />
 
@@ -37,7 +37,7 @@ export default function Home() {
       {/* Featured Architecture & Projects */}
       <ProjectsGrid />
 
-      {/* Achievements & Milestones (Easily Extensible) */}
+      {/* Achievements & Milestones */}
       <AchievementsSection />
 
       {/* Technical Arsenal & Skills Matrix */}
@@ -58,11 +58,11 @@ export default function Home() {
       {/* Persistent Floating HUD Button (Bottom Right) */}
       <button
         onClick={() => setTerminalOpen(true)}
-        className="fixed bottom-6 right-6 z-40 p-3.5 rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-cyan-500/30 text-cyan-300 shadow-[0_0_25px_rgba(0,242,254,0.25)] hover:shadow-[0_0_35px_rgba(0,242,254,0.5)] hover:scale-105 active:scale-95 transition-all group flex items-center gap-2"
+        className="fixed bottom-6 right-6 z-40 px-4 py-3 rounded-lg bg-[var(--ink-2)]/90 backdrop-blur-xl border border-[var(--rule)] text-[var(--bone-dim)] shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:border-[var(--amber)] hover:text-[var(--bone)] hover:scale-105 active:scale-95 transition-all group flex items-center gap-2 font-mono text-xs uppercase tracking-wider"
         title="Open Systems Terminal (⌘K)"
       >
-        <Terminal className="w-5 h-5 text-cyan-400 group-hover:rotate-12 transition-transform" />
-        <span className="hidden sm:inline font-mono text-xs font-semibold">
+        <Terminal className="w-4 h-4 text-[var(--amber)] group-hover:rotate-12 transition-transform" />
+        <span className="hidden sm:inline font-semibold">
           SYSTEM HUD
         </span>
       </button>

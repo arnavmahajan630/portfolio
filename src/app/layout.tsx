@@ -1,26 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const viewport: Viewport = {
-  themeColor: "#070913",
+  themeColor: "#0b0c0a",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
 };
 
 export const metadata: Metadata = {
-  title: "Arnav Mahajan | Backend & Distributed Systems Engineer",
+  title: "Arnav Mahajan — Systems & Distributed Backend Engineering",
   description:
     "Portfolio of Arnav Mahajan — High-throughput distributed systems, concurrent backends in Go, CNCF Meshery contributor, and 1,600+ algorithmic problem solver.",
   keywords: [
@@ -48,9 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#070913] text-slate-100 min-h-screen`}
-      >
+      <body className="antialiased bg-[var(--ink)] text-[var(--bone)] min-h-screen selection:bg-[var(--amber)] selection:text-[var(--ink)] font-mono">
         {children}
       </body>
     </html>

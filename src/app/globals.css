@@ -1,99 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Martian+Mono:wght@300;400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #070913;
-  --foreground: #f3f4f6;
+  --ink: #0b0c0a;
+  --ink-2: #131510;
+  --ink-3: #1b1e17;
+  --bone: #ece6d3;
+  --bone-dim: #a39e8c;
+  --rule: #34372c;
+  --amber: #ff5a1f;
+  --amber-glow: rgba(255, 90, 31, 0.16);
+  --ok: #b7e35a;
+  --ok-glow: rgba(183, 227, 90, 0.16);
+
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-mono: "Martian Mono", monospace;
+
+  --background: var(--ink);
+  --foreground: var(--bone);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  color: var(--bone);
+  background: var(--ink);
+  font-family: var(--font-mono), monospace;
   overflow-x: hidden;
-  selection-background-color: #00f2fe;
-  selection-color: #000000;
 }
 
 ::selection {
-  background: rgba(0, 242, 254, 0.3);
-  color: #ffffff;
+  background: var(--amber);
+  color: var(--ink);
 }
 
-/* Custom modern scrollbar */
+/* Custom scrollbar matching mon.lightberryapi.com */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #05070f;
+  background: var(--ink);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
+  background: var(--rule);
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 242, 254, 0.5);
+  background: var(--bone-dim);
 }
 
-/* Glassmorphism utility classes */
+/* Font classes */
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), monospace;
+}
+
+/* Card and Panel Utilities */
 .glass-panel {
-  background: rgba(13, 17, 34, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+  background: rgba(19, 21, 16, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--rule);
+  box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.6);
 }
 
 .glass-panel-hover {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s ease-out;
 }
 .glass-panel-hover:hover {
-  background: rgba(17, 24, 48, 0.8);
-  border-color: rgba(0, 242, 254, 0.3);
-  box-shadow: 0 12px 40px 0 rgba(0, 242, 254, 0.12);
+  background: var(--ink-3);
+  border-color: var(--amber);
+  box-shadow: 0 10px 35px 0 var(--amber-glow);
 }
 
 .glass-pill {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--ink-2);
+  border: 1px solid var(--rule);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Holographic gradient text */
-.text-hologram {
-  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 40%, #00f2fe 80%, #10b981 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-cyan {
-  background: linear-gradient(135deg, #ffffff 0%, #00f2fe 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-violet {
-  background: linear-gradient(135deg, #c084fc 0%, #6366f1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Glowing background mesh / grid */
-.bg-grid-pattern {
-  background-size: 40px 40px;
+/* Background rule grid pattern */
+.bg-grid-rule {
+  background-size: 36px 36px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-}
-
-.bg-dot-pattern {
-  background-size: 24px 24px;
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-}
-
-/* 3D Perspective container */
-.perspective-1000 {
-  perspective: 1000px;
+    linear-gradient(to right, rgba(52, 55, 44, 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(52, 55, 44, 0.35) 1px, transparent 1px);
 }

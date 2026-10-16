@@ -15,31 +15,31 @@ export default function SkillsMatrix() {
   const getIcon = (name: string) => {
     switch (name) {
       case "Code2":
-        return <Code2 className="w-5 h-5 text-cyan-400" />;
+        return <Code2 className="w-5 h-5 text-[var(--amber)]" />;
       case "Cpu":
-        return <Cpu className="w-5 h-5 text-violet-400" />;
+        return <Cpu className="w-5 h-5 text-[var(--ok)]" />;
       case "Cloud":
-        return <Cloud className="w-5 h-5 text-emerald-400" />;
+        return <Cloud className="w-5 h-5 text-[var(--bone)]" />;
       case "ShieldCheck":
-        return <ShieldCheck className="w-5 h-5 text-amber-400" />;
+        return <ShieldCheck className="w-5 h-5 text-[var(--amber)]" />;
       default:
-        return <Terminal className="w-5 h-5 text-cyan-400" />;
+        return <Terminal className="w-5 h-5 text-[var(--amber)]" />;
     }
   };
 
   return (
-    <section id="skills" className="relative py-24 px-4 sm:px-8 border-t border-white/5">
+    <section id="skills" className="relative py-24 px-4 sm:px-8 border-t border-[var(--rule)]">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-xs font-mono text-cyan-300 mb-3">
-            <Terminal className="w-3.5 h-3.5 text-cyan-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--ink-2)] border border-[var(--rule)] text-xs font-mono text-[var(--bone-dim)] mb-3">
+            <Terminal className="w-3.5 h-3.5 text-[var(--amber)]" />
             <span>05 // TECHNICAL ARSENAL</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Core Competencies & <span className="text-gradient-cyan">Stack</span>
+          <h2 className="font-display text-3xl sm:text-5xl font-normal text-[var(--bone)] tracking-tight">
+            Core Competencies &amp; <em className="italic text-[var(--amber)]">Stack</em>
           </h2>
-          <p className="text-slate-400 max-w-xl text-sm sm:text-base mt-2">
+          <p className="text-[var(--bone-dim)] max-w-xl text-xs sm:text-sm mt-2 font-mono">
             A breakdown of technologies and engineering disciplines I employ to architect resilient, high-load backends.
           </p>
         </div>
@@ -49,51 +49,51 @@ export default function SkillsMatrix() {
           {skillCategories.map((category, idx) => (
             <Card3D
               key={category.title}
-              glowColor={idx === 0 ? "cyan" : idx === 1 ? "violet" : idx === 2 ? "emerald" : "amber"}
+              glowColor={idx === 0 ? "amber" : idx === 1 ? "lime" : "bone"}
               className="h-full"
             >
               <div className="p-6 sm:p-8 space-y-6">
                 {/* Category Header */}
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-[var(--ink-3)] border border-[var(--rule)] flex items-center justify-center shrink-0">
                     {getIcon(category.iconName)}
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white">
+                    <h3 className="font-display text-2xl font-normal text-[var(--bone)]">
                       {category.title}
                     </h3>
-                    <p className="text-xs text-slate-400 mt-0.5">
+                    <p className="text-xs text-[var(--bone-dim)] mt-0.5 font-mono">
                       {category.subtitle}
                     </p>
                   </div>
                 </div>
 
                 {/* Skills Badges / Pills */}
-                <div className="space-y-3">
+                <div className="space-y-2.5 font-mono">
                   {category.skills.map((skill) => (
                     <div
                       key={skill.name}
-                      className="p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/15 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-1.5"
+                      className="p-3 rounded-lg bg-[var(--ink-3)] border border-[var(--rule)] hover:border-[var(--bone-dim)] transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-1.5"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                        <span className="text-sm font-semibold text-white">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--amber)]" />
+                        <span className="text-xs sm:text-sm font-semibold text-[var(--bone)]">
                           {skill.name}
                         </span>
                         {skill.description && (
-                          <span className="hidden lg:inline text-xs text-slate-400 font-sans">
+                          <span className="hidden lg:inline text-[11px] text-[var(--bone-dim)]">
                             — {skill.description}
                           </span>
                         )}
                       </div>
 
                       <span
-                        className={`text-[10px] font-mono px-2 py-0.5 rounded self-start sm:self-auto ${
+                        className={`text-[9px] font-mono px-2 py-0.5 rounded self-start sm:self-auto uppercase tracking-wider ${
                           skill.level === "Production"
-                            ? "bg-cyan-500/10 text-cyan-300 border border-cyan-500/20"
+                            ? "bg-[var(--ink-2)] text-[var(--amber)] border border-[var(--rule)]"
                             : skill.level === "Advanced"
-                            ? "bg-violet-500/10 text-violet-300 border border-violet-500/20"
-                            : "bg-white/5 text-slate-400 border border-white/10"
+                            ? "bg-[var(--ink-2)] text-[var(--ok)] border border-[var(--rule)]"
+                            : "bg-[var(--ink-2)] text-[var(--bone-dim)] border border-[var(--rule)]"
                         }`}
                       >
                         {skill.level}

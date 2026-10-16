@@ -27,7 +27,6 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
   const inputRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  // Focus input when terminal opens
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => {
@@ -36,12 +35,10 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
     }
   }, [isOpen]);
 
-  // Scroll to bottom on logs change
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [logs]);
 
-  // Handle hotkey Cmd+K or Ctrl+K
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -70,18 +67,18 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
     switch (cmd) {
       case "help":
         output = (
-          <div className="space-y-1.5 text-xs text-slate-300">
-            <p className="text-cyan-300 font-semibold">Available telemetry commands:</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-slate-400 font-mono">
-              <div><span className="text-white">bio</span> - Overview & academic background</div>
-              <div><span className="text-white">experience</span> - Internships & CNCF Meshery</div>
-              <div><span className="text-white">projects</span> - Veyra, Re:Learn, CertiProof</div>
-              <div><span className="text-white">achievements</span> - CP rankings & hackathons</div>
-              <div><span className="text-white">stats</span> - System benchmarks & DSA metrics</div>
-              <div><span className="text-white">resume</span> - Download official resume PDF</div>
-              <div><span className="text-white">contact</span> - Email, phone, and profiles</div>
-              <div><span className="text-white">clear</span> - Clear terminal window</div>
-              <div><span className="text-white">exit</span> - Close HUD drawer</div>
+          <div className="space-y-1.5 text-xs text-[var(--bone-dim)] font-mono">
+            <p className="text-[var(--amber)] font-semibold">Available telemetry commands:</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 font-mono">
+              <div><span className="text-[var(--bone)]">bio</span> - Overview & academic background</div>
+              <div><span className="text-[var(--bone)]">experience</span> - Internships & CNCF Meshery</div>
+              <div><span className="text-[var(--bone)]">projects</span> - Veyra, ah-monad, Re:Learn</div>
+              <div><span className="text-[var(--bone)]">achievements</span> - CP rankings & hackathons</div>
+              <div><span className="text-[var(--bone)]">stats</span> - System benchmarks & DSA metrics</div>
+              <div><span className="text-[var(--bone)]">resume</span> - Download official resume PDF</div>
+              <div><span className="text-[var(--bone)]">contact</span> - Email, phone, and profiles</div>
+              <div><span className="text-[var(--bone)]">clear</span> - Clear terminal window</div>
+              <div><span className="text-[var(--bone)]">exit</span> - Close HUD drawer</div>
             </div>
           </div>
         );
@@ -89,9 +86,9 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
 
       case "bio":
         output = (
-          <div className="text-xs space-y-1.5 text-slate-300">
-            <p className="text-cyan-400 font-bold">{personalData.name} — {personalData.role}</p>
-            <p className="text-slate-400">{personalData.tagline}</p>
+          <div className="text-xs space-y-1.5 text-[var(--bone-dim)] font-mono">
+            <p className="text-[var(--amber)] font-bold">{personalData.name} — {personalData.role}</p>
+            <p>{personalData.tagline}</p>
             <p>🎓 {personalData.education.institution} ({personalData.education.degree}, {personalData.education.expectedGraduation}, CGPA: {personalData.education.cgpa})</p>
             <p>📍 {personalData.location}</p>
           </div>
@@ -100,12 +97,12 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
 
       case "experience":
         output = (
-          <div className="space-y-3 text-xs">
+          <div className="space-y-3 text-xs font-mono">
             {experiences.map((exp) => (
-              <div key={exp.id} className="border-l-2 border-cyan-500/50 pl-3">
-                <p className="text-white font-bold">{exp.role} @ {exp.company}</p>
-                <p className="text-slate-400 text-[11px]">{exp.period} • {exp.location}</p>
-                <p className="text-slate-300 mt-1">{exp.description[0]}</p>
+              <div key={exp.id} className="border-l-2 border-[var(--amber)] pl-3">
+                <p className="text-[var(--bone)] font-bold">{exp.role} @ {exp.company}</p>
+                <p className="text-[var(--bone-dim)] text-[11px]">{exp.period} • {exp.location}</p>
+                <p className="text-[var(--bone-dim)] mt-1">{exp.description[0]}</p>
               </div>
             ))}
           </div>
@@ -114,12 +111,12 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
 
       case "projects":
         output = (
-          <div className="space-y-2.5 text-xs">
+          <div className="space-y-2.5 text-xs font-mono">
             {projects.map((p) => (
-              <div key={p.id} className="border-l-2 border-violet-500/50 pl-3">
-                <p className="text-cyan-300 font-bold">{p.title} <span className="text-slate-400 font-normal">({p.category})</span></p>
-                <p className="text-slate-300">{p.tagline}</p>
-                <p className="text-slate-500 text-[11px]">Stack: {p.tech.slice(0, 5).join(", ")}</p>
+              <div key={p.id} className="border-l-2 border-[var(--rule)] pl-3">
+                <p className="text-[var(--amber)] font-bold">{p.title} <span className="text-[var(--bone-dim)] font-normal">({p.category})</span></p>
+                <p className="text-[var(--bone)]">{p.tagline}</p>
+                <p className="text-[var(--bone-dim)] text-[11px]">Stack: {p.tech.slice(0, 5).join(", ")}</p>
               </div>
             ))}
           </div>
@@ -128,12 +125,12 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
 
       case "stats":
         output = (
-          <div className="grid grid-cols-2 gap-2 text-xs">
+          <div className="grid grid-cols-2 gap-2 text-xs font-mono">
             {personalData.metrics.map((m) => (
-              <div key={m.label} className="p-2 rounded bg-white/5 border border-white/10">
-                <span className="text-slate-400 block text-[10px] uppercase font-mono">{m.label}</span>
-                <span className="text-cyan-300 font-bold text-sm">{m.value}</span>
-                <span className="text-slate-400 text-[10px] block">{m.description}</span>
+              <div key={m.label} className="p-2 rounded bg-[var(--ink-3)] border border-[var(--rule)]">
+                <span className="text-[var(--bone-dim)] block text-[9px] uppercase">{m.label}</span>
+                <span className="text-[var(--amber)] font-bold text-sm">{m.value}</span>
+                <span className="text-[var(--bone-dim)] text-[10px] block opacity-80">{m.description}</span>
               </div>
             ))}
           </div>
@@ -142,14 +139,14 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
 
       case "achievements":
         output = (
-          <div className="space-y-2 text-xs">
+          <div className="space-y-2 text-xs font-mono">
             {achievements.map((a) => (
               <div key={a.id} className="flex items-start gap-2">
-                <span className="text-amber-400 font-bold">★</span>
+                <span className="text-[var(--amber)] font-bold">★</span>
                 <div>
-                  <span className="text-white font-semibold">{a.title}</span>
-                  <span className="text-slate-400 text-[11px]"> — {a.highlightMetric}</span>
-                  <p className="text-slate-400 text-[11px]">{a.description}</p>
+                  <span className="text-[var(--bone)] font-semibold">{a.title}</span>
+                  <span className="text-[var(--bone-dim)] text-[11px]"> — {a.highlightMetric}</span>
+                  <p className="text-[var(--bone-dim)] text-[11px]">{a.description}</p>
                 </div>
               </div>
             ))}
@@ -165,7 +162,7 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
           link.click();
         }
         output = (
-          <p className="text-emerald-400 text-xs">
+          <p className="text-[var(--ok)] text-xs font-mono">
             ✓ Initiating download for Arnav_Mahajan_Resume.pdf...
           </p>
         );
@@ -173,11 +170,11 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
 
       case "contact":
         output = (
-          <div className="space-y-1 text-xs text-slate-300 font-mono">
-            <p>📧 Email: <span className="text-cyan-300">{personalData.email}</span></p>
-            <p>📞 Phone: <span className="text-cyan-300">{personalData.phone}</span></p>
-            <p>🔗 LinkedIn: <a href={personalData.socials.linkedin} target="_blank" rel="noreferrer" className="text-cyan-400 underline">{personalData.socials.linkedin}</a></p>
-            <p>🐙 GitHub: <a href={personalData.socials.github} target="_blank" rel="noreferrer" className="text-cyan-400 underline">{personalData.socials.github}</a></p>
+          <div className="space-y-1 text-xs text-[var(--bone-dim)] font-mono">
+            <p>📧 Email: <span className="text-[var(--bone)]">{personalData.email}</span></p>
+            <p>📞 Phone: <span className="text-[var(--bone)]">{personalData.phone}</span></p>
+            <p>🔗 LinkedIn: <a href={personalData.socials.linkedin} target="_blank" rel="noreferrer" className="text-[var(--amber)] underline">{personalData.socials.linkedin}</a></p>
+            <p>🐙 GitHub: <a href={personalData.socials.github} target="_blank" rel="noreferrer" className="text-[var(--amber)] underline">{personalData.socials.github}</a></p>
           </div>
         );
         break;
@@ -194,8 +191,8 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
 
       default:
         output = (
-          <p className="text-rose-400 text-xs">
-            command not found: {rawCmd}. Type <span className="text-cyan-300 underline">&apos;help&apos;</span> to list commands.
+          <p className="text-[var(--amber)] text-xs font-mono">
+            command not found: {rawCmd}. Type <span className="underline">&apos;help&apos;</span> to list commands.
           </p>
         );
         break;
@@ -242,26 +239,26 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 100 }}
           transition={{ type: "spring", stiffness: 350, damping: 30 }}
-          className="fixed inset-x-4 bottom-4 md:right-8 md:left-auto md:w-[620px] z-50 rounded-2xl glass-panel border border-cyan-500/30 shadow-[0_20px_60px_rgba(0,0,0,0.85)] flex flex-col max-h-[75vh] sm:max-h-[540px] overflow-hidden"
+          className="fixed inset-x-4 bottom-4 md:right-8 md:left-auto md:w-[620px] z-50 rounded-xl bg-[var(--ink-2)] border border-[var(--rule)] shadow-[0_20px_60px_rgba(0,0,0,0.85)] flex flex-col max-h-[75vh] sm:max-h-[540px] overflow-hidden"
         >
-          {/* Terminal Window Title Bar */}
-          <div className="flex items-center justify-between px-4 py-2.5 bg-slate-950/80 border-b border-white/10 select-none">
+          {/* Terminal Title Bar */}
+          <div className="flex items-center justify-between px-4 py-2.5 bg-[var(--ink)] border-b border-[var(--rule)] select-none font-mono">
             <div className="flex items-center gap-2">
-              <TerminalIcon className="w-4 h-4 text-cyan-400" />
-              <span className="text-xs font-mono font-bold text-slate-200">
+              <TerminalIcon className="w-4 h-4 text-[var(--amber)]" />
+              <span className="text-xs font-bold text-[var(--bone)]">
                 arnav@telemetry: ~ (zsh)
               </span>
             </div>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setLogs([])}
-                className="text-[10px] font-mono text-slate-400 hover:text-white px-2 py-0.5 rounded bg-white/5"
+                className="text-[10px] text-[var(--bone-dim)] hover:text-[var(--bone)] px-2 py-0.5 rounded bg-[var(--ink-3)] border border-[var(--rule)]"
               >
                 clear
               </button>
               <button
                 onClick={onClose}
-                className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+                className="p-1 rounded text-[var(--bone-dim)] hover:text-[var(--bone)] hover:bg-[var(--ink-3)] transition-colors"
                 aria-label="Close terminal"
               >
                 <X className="w-4 h-4" />
@@ -271,19 +268,17 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
 
           {/* Terminal Output Area */}
           <div className="p-4 overflow-y-auto space-y-3 font-mono flex-1 text-xs">
-            {/* Initial Welcome message */}
-            <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5 text-slate-400 space-y-1">
-              <p className="text-cyan-300 font-semibold">ARNAV MAHAJAN // SYSTEMS TELEMETRY v2.4.0</p>
+            <div className="p-3 rounded bg-[var(--ink-3)] border border-[var(--rule)] text-[var(--bone-dim)] space-y-1">
+              <p className="text-[var(--amber)] font-semibold">ARNAV MAHAJAN // SYSTEMS TELEMETRY v2.4.0</p>
               <p className="text-[11px]">Backend &bull; Distributed Infrastructure &bull; 1,600+ DSA &bull; CNCF Meshery</p>
-              <p className="text-[11px] text-slate-500">Type <span className="text-cyan-300 font-bold">&apos;help&apos;</span> to discover commands or <span className="text-emerald-300 font-bold">&apos;resume&apos;</span> to download resume.</p>
+              <p className="text-[11px] text-[var(--bone-dim)] opacity-80">Type <span className="text-[var(--bone)] font-bold">&apos;help&apos;</span> to discover commands or <span className="text-[var(--ok)] font-bold">&apos;resume&apos;</span> to download resume.</p>
             </div>
 
-            {/* Logs history */}
             {logs.map((log) => (
               <div key={log.id} className="space-y-1">
-                <div className="flex items-center gap-2 text-slate-400">
-                  <span className="text-emerald-400 font-bold">&gt;</span>
-                  <span className="text-white font-semibold">{log.command}</span>
+                <div className="flex items-center gap-2 text-[var(--bone-dim)]">
+                  <span className="text-[var(--amber)] font-bold">&gt;</span>
+                  <span className="text-[var(--bone)] font-semibold">{log.command}</span>
                 </div>
                 <div className="pl-4">{log.output}</div>
               </div>
@@ -292,8 +287,8 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
           </div>
 
           {/* Terminal Input Bar */}
-          <div className="p-3 bg-slate-950/90 border-t border-white/10 flex items-center gap-2 font-mono">
-            <span className="text-cyan-400 text-sm font-bold">&gt;</span>
+          <div className="p-3 bg-[var(--ink)] border-t border-[var(--rule)] flex items-center gap-2 font-mono">
+            <span className="text-[var(--amber)] text-sm font-bold">&gt;</span>
             <input
               ref={inputRef}
               type="text"
@@ -301,11 +296,11 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
               onChange={(e) => setInputVal(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="type 'help', 'projects', 'stats', 'resume'..."
-              className="flex-1 bg-transparent border-none outline-none text-xs text-white placeholder-slate-500"
+              className="flex-1 bg-transparent border-none outline-none text-xs text-[var(--bone)] placeholder-[var(--bone-dim)]"
             />
             <button
               onClick={() => handleCommand(inputVal)}
-              className="p-1.5 rounded-lg bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500/30 text-xs transition-colors"
+              className="p-1.5 rounded bg-[var(--ink-3)] text-[var(--amber)] border border-[var(--rule)] hover:border-[var(--amber)]/40 text-xs transition-colors"
               title="Execute Command"
             >
               <CornerDownLeft className="w-3.5 h-3.5" />

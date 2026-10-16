@@ -31,39 +31,39 @@ export default function AchievementsSection() {
       particleCount: 35,
       spread: 60,
       origin: { x, y },
-      colors: ["#00f2fe", "#4facfe", "#8b5cf6", "#10b981", "#f59e0b"],
+      colors: ["#ff5a1f", "#b7e35a", "#ece6d3", "#a39e8c"],
       disableForReducedMotion: true,
     });
   };
 
   return (
-    <section id="achievements" className="relative py-24 px-4 sm:px-8 border-t border-white/5">
+    <section id="achievements" className="relative py-24 px-4 sm:px-8 border-t border-[var(--rule)]">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill text-xs font-mono text-cyan-300 mb-3">
-              <Terminal className="w-3.5 h-3.5 text-cyan-400" />
-              <span>04 // RECOGNITION & HONORS</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--ink-2)] border border-[var(--rule)] text-xs font-mono text-[var(--bone-dim)] mb-3">
+              <Terminal className="w-3.5 h-3.5 text-[var(--amber)]" />
+              <span>04 // RECOGNITION &amp; HONORS</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Milestones & <span className="text-gradient-cyan">Achievements</span>
+            <h2 className="font-display text-3xl sm:text-5xl font-normal text-[var(--bone)] tracking-tight">
+              Milestones &amp; <em className="italic text-[var(--amber)]">Achievements</em>
             </h2>
-            <p className="text-slate-400 max-w-xl text-sm sm:text-base mt-2">
+            <p className="text-[var(--bone-dim)] max-w-xl text-xs sm:text-sm mt-2 font-mono">
               Recognized for competitive algorithmic excellence, hackathon victories, and high-impact open-source contributions.
             </p>
           </div>
 
           {/* Filter Tabs */}
-          <div className="flex flex-wrap gap-1.5 p-1.5 rounded-2xl glass-panel border border-white/10">
+          <div className="flex flex-wrap gap-1.5 p-1 rounded-lg bg-[var(--ink-2)] border border-[var(--rule)] font-mono">
             {filterTabs.map((tab) => (
               <button
                 key={tab.value}
                 onClick={() => setSelectedFilter(tab.value)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
+                className={`px-3 py-1 rounded text-xs transition-all ${
                   selectedFilter === tab.value
-                    ? "bg-gradient-to-r from-cyan-500/20 to-violet-500/20 text-cyan-300 border border-cyan-500/30 shadow-[0_0_15px_rgba(0,242,254,0.15)]"
-                    : "text-slate-400 hover:text-white"
+                    ? "bg-[var(--amber)] text-black font-semibold shadow-sm"
+                    : "text-[var(--bone-dim)] hover:text-[var(--bone)]"
                 }`}
               >
                 {tab.label}
@@ -79,12 +79,12 @@ export default function AchievementsSection() {
               <Card3D
                 glowColor={
                   item.category === "cp"
-                    ? "cyan"
+                    ? "amber"
                     : item.category === "hackathon"
                     ? "amber"
                     : item.category === "systems"
-                    ? "emerald"
-                    : "violet"
+                    ? "lime"
+                    : "bone"
                 }
                 className="h-full"
               >
@@ -92,41 +92,41 @@ export default function AchievementsSection() {
                   <div>
                     {/* Top Row */}
                     <div className="flex items-center justify-between gap-2 mb-3">
-                      <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-amber-400">
+                      <div className="w-9 h-9 rounded-lg bg-[var(--ink-3)] border border-[var(--rule)] flex items-center justify-center">
                         {item.category === "hackathon" ? (
-                          <Trophy className="w-4 h-4 text-amber-400" />
+                          <Trophy className="w-4 h-4 text-[var(--amber)]" />
                         ) : item.category === "cp" ? (
-                          <Sparkles className="w-4 h-4 text-cyan-400" />
+                          <Sparkles className="w-4 h-4 text-[var(--ok)]" />
                         ) : (
-                          <Award className="w-4 h-4 text-emerald-400" />
+                          <Award className="w-4 h-4 text-[var(--bone)]" />
                         )}
                       </div>
-                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-white/5 border border-white/10 text-slate-300">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[var(--ink-3)] border border-[var(--rule)] text-[var(--bone-dim)]">
                         {item.categoryLabel}
                       </span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">
+                    <h3 className="font-display text-2xl font-normal text-[var(--bone)] group-hover:text-[var(--amber)] transition-colors">
                       {item.title}
                     </h3>
 
                     {item.organization && (
-                      <p className="text-xs text-slate-400 font-mono mt-0.5">
+                      <p className="text-xs text-[var(--bone-dim)] font-mono mt-1 opacity-80">
                         {item.organization} • {item.date}
                       </p>
                     )}
 
-                    <p className="text-xs text-slate-300 leading-relaxed mt-3">
+                    <p className="text-xs text-[var(--bone-dim)] leading-relaxed mt-3 font-mono">
                       {item.description}
                     </p>
                   </div>
 
                   {/* Bottom Metric & Badge */}
-                  <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono">
-                    <span className="text-cyan-400 font-semibold">
+                  <div className="pt-3 border-t border-[var(--rule)] flex items-center justify-between text-xs font-mono">
+                    <span className="text-[var(--amber)] font-bold">
                       {item.highlightMetric}
                     </span>
-                    <span className="px-2 py-0.5 rounded bg-white/5 text-[10px] text-slate-400">
+                    <span className="px-2 py-0.5 rounded bg-[var(--ink-3)] text-[10px] text-[var(--bone-dim)] border border-[var(--rule)]">
                       {item.badge}
                     </span>
                   </div>

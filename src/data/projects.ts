@@ -96,9 +96,9 @@ export const projects: ProjectItem[] = [
     githubUrl: "https://github.com/arnavmahajan630/auctra",
   },
   {
-    id: "ah-monad",
-    title: "ah-monad",
-    tagline: "Confidential agent-to-agent settlement protocol with ERC-5564 stealth addresses & decoy bursts on Monad",
+    id: "shade",
+    title: "Shade",
+    tagline: "Private settlement rail for autonomous agent commerce with ERC-5564 stealth addresses on Monad",
     category: "Web3 & Security",
     year: "2026",
     featured: true,
@@ -116,5 +116,6 @@ export const projects: ProjectItem[] = [
     ],
     architectureDetails: "LLM Agent Negotiation -> Rule-bounded Tool Call -> Plain Wallet Stealth Derivation -> EIP-712 Intent -> Monad Relayer (single tx.from) -> Settlement Vault -> StealthAnnouncer (ERC-5564 event).",
     githubUrl: "https://github.com/kronzter/ah-monad",
+    liveUrl: "https://mon.lightberryapi.com/",
   },
 ];
