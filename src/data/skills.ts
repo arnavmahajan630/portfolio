@@ -23,7 +23,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "TypeScript", level: "Production", highlight: true, description: "NestJS, type-safe APIs, modern fullstack tooling" },
       { name: "JavaScript", level: "Proficient", highlight: true, description: "Event loop, asynchronous I/O, modern ES6+, Node.js" },
       { name: "SQL", level: "Production", highlight: true, description: "Complex joins, indexing, table partitioning, query tuning" },
-      { name: "Bash / Shell", level: "Proficient", highlight: false, description: "Automation scripts, Linux CLI pipelines, CI/CD orchestration" },
+      { name: "Bash / Shell", level: "Proficient", highlight: true, description: "Automation scripts, Linux CLI pipelines, CI/CD orchestration" },
     ],
   },
   {

@@ -83,7 +83,13 @@ export default function SkillsMatrix() {
                               : "bg-[var(--bone-dim)]/40"
                           }`}
                         />
-                        <span className="text-xs sm:text-sm font-semibold text-[var(--bone)] shrink-0">
+                        <span
+                          className={`text-xs sm:text-sm font-semibold text-[var(--bone)] shrink-0 ${
+                            category.title === "Programming Languages"
+                              ? "w-28 sm:w-32"
+                              : ""
+                          }`}
+                        >
                           {skill.name}
                         </span>
                         {skill.description && (

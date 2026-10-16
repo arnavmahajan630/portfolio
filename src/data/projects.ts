@@ -35,7 +35,7 @@ export const projects: ProjectItem[] = [
       "Benchmarked 1B+ events at 300K+ events/sec on a local workstation, with automated load testing, smoke checks, integration checkpoints, and hardware-aware deployment profiles for reproducible performance evaluation.",
     ],
     architectureDetails: "Decoupled Kafka ingestion buffer -> OCSF Normalization Workers -> Tamper-evident Merkle segment sealer -> ClickHouse columnar store for petabyte-scale lineage queries.",
-    githubUrl: "https://github.com/arnavmahajan630",
+    githubUrl: "https://github.com/arnavmahajan630/veyra",
   },
   {
     id: "re-learn",
@@ -55,7 +55,7 @@ export const projects: ProjectItem[] = [
       "Built a knowledge-graph-driven learner state system that tracks competency, misconceptions, and remediation progress, enabling adaptive reassessment and personalized learning paths across interactive coding missions.",
     ],
     architectureDetails: "Telemetry Ingestion -> AST & Error Pattern Parser -> LightGBM Classification -> Bayesian Knowledge Graph State Updater -> Dynamic Remediation Engine.",
-    githubUrl: "https://github.com/arnavmahajan630",
+    githubUrl: "https://github.com/arnavmahajan630/re-learn",
   },
   {
     id: "certiproof",
