@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal as TerminalIcon, X, CornerDownLeft } from "lucide-react";
+import { Terminal as TerminalIcon, X, CornerDownLeft, Loader2, Check } from "lucide-react";
+import confetti from "canvas-confetti";
 import { personalData } from "@/data/personal";
 import { experiences } from "@/data/experience";
 import { projects } from "@/data/projects";
@@ -56,11 +57,182 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
   }, [isOpen, onClose]);
 
   const handleCommand = (rawCmd: string) => {
-    const cmd = rawCmd.trim().toLowerCase();
-    if (!cmd) return;
+    const trimmed = rawCmd.trim();
+    if (!trimmed) return;
 
     setHistory((prev) => [...prev, rawCmd]);
     setHistoryIndex(-1);
+
+    const parts = trimmed.split(/\s+/);
+    const mainCmd = parts[0].toLowerCase();
+    const cmd = trimmed.toLowerCase();
+
+    // CLI Message Sending Command: msg <text>, send <text>, transmit <text>
+    if (mainCmd === "msg" || mainCmd === "send" || mainCmd === "transmit") {
+      const args = trimmed.slice(mainCmd.length).trim();
+      if (!args) {
+        setLogs((prev) => [
+          ...prev,
+          {
+            id: Math.random().toString(36).substring(7),
+            command: rawCmd,
+            output: (
+              <div className="space-y-1 text-xs text-[var(--bone-dim)] font-mono p-2.5 rounded bg-[var(--ink-3)] border border-[var(--rule)]">
+                <p className="text-[var(--amber)] font-bold">CLI Transmission Uplink</p>
+                <p className="text-[11px]">Usage: <span className="text-[var(--bone)]">msg &lt;your message&gt;</span></p>
+                <p className="text-[11px]">Or with email: <span className="text-[var(--bone)]">msg &lt;you@email.com&gt; &lt;your message&gt;</span></p>
+                <p className="text-[11px] text-[var(--bone-dim)] opacity-80">
+                  Example: <span className="text-[#b7e35a]">msg alex@startup.io Interested in distributed systems roles!</span>
+                </p>
+              </div>
+            ),
+          },
+        ]);
+        setInputVal("");
+        return;
+      }
+
+      const argParts = args.split(/\s+/);
+      let senderEmail = "cli-hud@portfolio.local";
+      const senderName = "CLI HUD Terminal";
+      let messageText = args;
+
+      if (argParts[0].includes("@") && argParts.length > 1) {
+        senderEmail = argParts[0];
+        messageText = argParts.slice(1).join(" ");
+      }
+
+      const logId = Math.random().toString(36).substring(7);
+
+      setLogs((prev) => [
+        ...prev,
+        {
+          id: logId,
+          command: rawCmd,
+          output: (
+            <div className="flex items-center gap-2 text-xs text-[var(--amber)] font-mono animate-pulse">
+              <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              <span>[DISPATCHING] Establishing direct uplink to Arnav&apos;s inbox...</span>
+            </div>
+          ),
+        },
+      ]);
+      setInputVal("");
+
+      // Async Formspree dispatch
+      (async () => {
+        const endpoint =
+          process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ||
+          "https://formspree.io/f/xnpjlwqn";
+        try {
+          const res = await fetch(endpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              name: senderName,
+              email: senderEmail,
+              message: messageText,
+              _subject: `[HUD CLI Transmission] from ${senderEmail}`,
+            }),
+          });
+
+          if (res.ok) {
+            confetti({
+              particleCount: 50,
+              spread: 70,
+              origin: { y: 0.7 },
+              colors: ["#ff5a1f", "#b7e35a", "#ece6d3", "#a39e8c"],
+            });
+
+            setLogs((prev) =>
+              prev.map((log) =>
+                log.id === logId
+                  ? {
+                      ...log,
+                      output: (
+                        <div className="space-y-1 text-xs font-mono p-2.5 rounded bg-[var(--ink-3)] border border-[#b7e35a]/30">
+                          <p className="text-[#b7e35a] font-bold flex items-center gap-1.5">
+                            <Check className="w-3.5 h-3.5" />
+                            <span>[TRANSMISSION CONFIRMED]</span>
+                          </p>
+                          <p className="text-[var(--bone)] text-[11px]">
+                            Telemetry packet dispatched to <span className="font-bold">arnavmahajan630@gmail.com</span>. Zero-loss relay acknowledged.
+                          </p>
+                          <p className="text-[var(--bone-dim)] text-[10px]">
+                            Payload: &quot;{messageText}&quot; {senderEmail !== "cli-hud@portfolio.local" && `(from ${senderEmail})`}
+                          </p>
+                        </div>
+                      ),
+                    }
+                  : log
+              )
+            );
+            return;
+          }
+
+          // Fallback via /api/contact
+          const apiRes = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: senderName,
+              email: senderEmail,
+              message: messageText,
+            }),
+          });
+
+          if (apiRes.ok) {
+            confetti({
+              particleCount: 50,
+              spread: 70,
+              origin: { y: 0.7 },
+              colors: ["#ff5a1f", "#b7e35a", "#ece6d3", "#a39e8c"],
+            });
+            setLogs((prev) =>
+              prev.map((log) =>
+                log.id === logId
+                  ? {
+                      ...log,
+                      output: (
+                        <div className="space-y-1 text-xs font-mono p-2.5 rounded bg-[var(--ink-3)] border border-[#b7e35a]/30">
+                          <p className="text-[#b7e35a] font-bold">✓ [TRANSMISSION CONFIRMED]</p>
+                          <p className="text-[var(--bone)] text-[11px]">Delivered to Arnav&apos;s inbox via proxy relay.</p>
+                        </div>
+                      ),
+                    }
+                  : log
+              )
+            );
+            return;
+          }
+
+          throw new Error("Relay rejected");
+        } catch {
+          setLogs((prev) =>
+            prev.map((log) =>
+              log.id === logId
+                ? {
+                    ...log,
+                    output: (
+                      <div className="space-y-1 text-xs font-mono p-2.5 rounded bg-[var(--ink-3)] border border-[var(--amber)]/40 text-[var(--bone)]">
+                        <p className="text-[var(--amber)] font-bold">✗ [TRANSMISSION INTERRUPTED]</p>
+                        <p className="text-[11px] text-[var(--bone-dim)]">
+                          Could not deliver telemetry packet. Type <span className="text-[var(--bone)] font-bold">&apos;contact&apos;</span> to inspect direct fallback channels.
+                        </p>
+                      </div>
+                    ),
+                  }
+                : log
+            )
+          );
+        }
+      })();
+
+      return;
+    }
 
     let output: React.ReactNode = null;
 
@@ -70,6 +242,7 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
           <div className="space-y-1.5 text-xs text-[var(--bone-dim)] font-mono">
             <p className="text-[var(--amber)] font-semibold">Available telemetry commands:</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 font-mono">
+              <div><span className="text-[var(--bone)]">msg &lt;text&gt;</span> - Transmit message live from CLI</div>
               <div><span className="text-[var(--bone)]">bio</span> - Overview & academic background</div>
               <div><span className="text-[var(--bone)]">experience</span> - Internships & CNCF Meshery</div>
               <div><span className="text-[var(--bone)]">projects</span> - Veyra, ah-monad, Re:Learn</div>
@@ -271,7 +444,9 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
             <div className="p-3 rounded bg-[var(--ink-3)] border border-[var(--rule)] text-[var(--bone-dim)] space-y-1">
               <p className="text-[var(--amber)] font-semibold">ARNAV MAHAJAN // SYSTEMS TELEMETRY v2.4.0</p>
               <p className="text-[11px]">Backend &bull; Distributed Infrastructure &bull; 1,600+ DSA &bull; CNCF Meshery</p>
-              <p className="text-[11px] text-[var(--bone-dim)] opacity-80">Type <span className="text-[var(--bone)] font-bold">&apos;help&apos;</span> to discover commands or <span className="text-[var(--ok)] font-bold">&apos;resume&apos;</span> to download resume.</p>
+              <p className="text-[11px] text-[var(--bone-dim)] opacity-80">
+                Type <span className="text-[var(--bone)] font-bold">&apos;help&apos;</span> to discover commands, <span className="text-[var(--amber)] font-bold">&apos;msg &lt;text&gt;&apos;</span> to transmit live message, or <span className="text-[var(--ok)] font-bold">&apos;resume&apos;</span> to download resume.
+              </p>
             </div>
 
             {logs.map((log) => (
@@ -295,7 +470,7 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="type 'help', 'projects', 'stats', 'resume'..."
+              placeholder="type 'help', 'msg <text>', 'projects', 'resume'..."
               className="flex-1 bg-transparent border-none outline-none text-xs text-[var(--bone)] placeholder-[var(--bone-dim)]"
             />
             <button

@@ -49,7 +49,7 @@ export default function SkillsMatrix() {
           {skillCategories.map((category, idx) => (
             <Card3D
               key={category.title}
-              glowColor={idx === 0 ? "amber" : idx === 1 ? "lime" : "bone"}
+              glowColor={idx === 0 ? "amber" : idx === 1 ? "lime" : idx === 3 ? "amber" : "bone"}
               className="h-full"
             >
               <div className="p-6 sm:p-8 space-y-6">
@@ -75,20 +75,26 @@ export default function SkillsMatrix() {
                       key={skill.name}
                       className="p-3 rounded-lg bg-[var(--ink-3)] border border-[var(--rule)] hover:border-[var(--bone-dim)] transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-1.5"
                     >
-                      <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--amber)]" />
-                        <span className="text-xs sm:text-sm font-semibold text-[var(--bone)]">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                            skill.highlight
+                              ? "bg-[var(--amber)] shadow-[0_0_6px_rgba(255,90,31,0.5)]"
+                              : "bg-[var(--bone-dim)]/40"
+                          }`}
+                        />
+                        <span className="text-xs sm:text-sm font-semibold text-[var(--bone)] shrink-0">
                           {skill.name}
                         </span>
                         {skill.description && (
-                          <span className="hidden lg:inline text-[11px] text-[var(--bone-dim)]">
+                          <span className="hidden lg:inline text-[11px] text-[var(--bone-dim)] truncate">
                             — {skill.description}
                           </span>
                         )}
                       </div>
 
                       <span
-                        className={`text-[9px] font-mono px-2 py-0.5 rounded self-start sm:self-auto uppercase tracking-wider ${
+                        className={`text-[9px] font-mono px-2 py-0.5 rounded self-start sm:self-auto uppercase tracking-wider shrink-0 ${
                           skill.level === "Production"
                             ? "bg-[var(--ink-2)] text-[var(--amber)] border border-[var(--rule)]"
                             : skill.level === "Advanced"

@@ -276,10 +276,6 @@ export default function ContactSection() {
                       <Sparkles className="w-4 h-4 text-[var(--amber)]" />
                       Send a Transmission
                     </h3>
-                    <span className="text-[10px] uppercase tracking-widest text-[#b7e35a] flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#b7e35a] animate-pulse" />
-                      Live Terminal
-                    </span>
                   </div>
 
                   {submitResult && submitResult.success ? (
@@ -440,7 +436,7 @@ export default function ContactSection() {
                     <MapPin className="w-3.5 h-3.5 text-[var(--amber)]" />
                     {personalData.location}
                   </span>
-                  <span>Direct Delivery to arnavmahajan630@gmail.com</span>
+                  <span className="text-[var(--bone)] font-mono">Direct Uplink // Zero-Loss Priority Relay to Arnav</span>
                 </div>
               </div>
             </Card3D>
