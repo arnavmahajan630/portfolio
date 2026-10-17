@@ -248,6 +248,7 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
               <div><span className="text-[var(--bone)]">projects</span> - Veyra, ah-monad, Re:Learn</div>
               <div><span className="text-[var(--bone)]">achievements</span> - CP rankings & hackathons</div>
               <div><span className="text-[var(--bone)]">stats</span> - System benchmarks & DSA metrics</div>
+              <div><span className="text-[var(--bone)]">blog</span> - Open technical blog (arnavlogs)</div>
               <div><span className="text-[var(--bone)]">resume</span> - Download official resume PDF</div>
               <div><span className="text-[var(--bone)]">contact</span> - Email, phone, and profiles</div>
               <div><span className="text-[var(--bone)]">clear</span> - Clear terminal window</div>
@@ -327,6 +328,17 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
         );
         break;
 
+      case "blog":
+        if (typeof window !== "undefined") {
+          window.open(personalData.socials.blog, "_blank", "noopener,noreferrer");
+        }
+        output = (
+          <p className="text-[var(--ok)] text-xs font-mono">
+            ✓ Opening Arnav&apos;s technical blog ({personalData.socials.blog})...
+          </p>
+        );
+        break;
+
       case "resume":
         if (typeof window !== "undefined") {
           const link = document.createElement("a");
@@ -346,6 +358,7 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
           <div className="space-y-1 text-xs text-[var(--bone-dim)] font-mono">
             <p>📧 Email: <span className="text-[var(--bone)]">{personalData.email}</span></p>
             <p>📞 Phone: <span className="text-[var(--bone)]">{personalData.phone}</span></p>
+            <p>✍️ Blog: <a href={personalData.socials.blog} target="_blank" rel="noreferrer" className="text-[var(--amber)] underline">{personalData.socials.blog}</a></p>
             <p>🔗 LinkedIn: <a href={personalData.socials.linkedin} target="_blank" rel="noreferrer" className="text-[var(--amber)] underline">{personalData.socials.linkedin}</a></p>
             <p>🐙 GitHub: <a href={personalData.socials.github} target="_blank" rel="noreferrer" className="text-[var(--amber)] underline">{personalData.socials.github}</a></p>
           </div>
@@ -470,7 +483,7 @@ export default function TerminalDrawer({ isOpen, onClose }: TerminalDrawerProps)
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="type 'help', 'msg <text>', 'projects', 'resume'..."
+              placeholder="type 'help', 'blog', 'projects', 'resume'..."
               className="flex-1 bg-transparent border-none outline-none text-xs text-[var(--bone)] placeholder-[var(--bone-dim)]"
             />
             <button

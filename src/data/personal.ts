@@ -17,6 +17,7 @@ export interface PersonalInfo {
     github: string;
     linkedin: string;
     email: string;
+    blog: string;
   };
   status: {
     available: boolean;
@@ -47,6 +48,7 @@ export const personalData: PersonalInfo = {
     github: "https://github.com/arnavmahajan630",
     linkedin: "https://www.linkedin.com/in/arnavmahajan630/",
     email: "mailto:arnavmahajan630@gmail.com",
+    blog: "https://arnavlogs.hashnode.dev/",
   },
   status: {
     available: true,

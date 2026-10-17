@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, Download, Menu, X } from "lucide-react";
+import { Terminal, Download, Menu, X, BookOpen, ExternalLink } from "lucide-react";
 import { personalData } from "@/data/personal";
 
 interface NavbarProps {
@@ -124,6 +124,18 @@ export default function Navbar({ onOpenTerminal }: NavbarProps) {
 
           {/* Right Action Buttons */}
           <div className="flex items-center gap-2.5">
+            {/* Blog Button */}
+            <a
+              href={personalData.socials.blog}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--ink-2)] hover:bg-[var(--ink-3)] border border-[var(--rule)] hover:border-[var(--amber)]/40 text-[var(--bone)] text-xs font-mono font-medium transition-all shadow-sm"
+              title="Technical Blog"
+            >
+              <BookOpen className="w-3.5 h-3.5 text-[var(--amber)]" />
+              <span>Blog</span>
+            </a>
+
             {/* Terminal Drawer Button */}
             <button
               onClick={onOpenTerminal}
@@ -180,6 +192,19 @@ export default function Navbar({ onOpenTerminal }: NavbarProps) {
               ))}
 
               <div className="pt-3 mt-1 border-t border-[var(--rule)] flex flex-col gap-2">
+                <a
+                  href={personalData.socials.blog}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-4 py-2.5 rounded-lg bg-[var(--ink-3)] text-xs text-[var(--bone)] hover:text-[var(--amber)] transition-colors"
+                >
+                  <span className="flex items-center gap-2">
+                    <BookOpen className="w-4 h-4 text-[var(--amber)]" />
+                    Technical Blog
+                  </span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[var(--bone-dim)]" />
+                </a>
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);

@@ -10,6 +10,7 @@ import {
   Cpu,
   Layers,
   Sparkles,
+  BookOpen,
 } from "lucide-react";
 import { personalData } from "@/data/personal";
 import Card3D from "./Card3D";
@@ -129,6 +130,16 @@ export default function Hero({ onOpenTerminal }: HeroProps) {
 
           {/* Social Links */}
           <div className="flex items-center gap-2 pl-1">
+            <a
+              href={personalData.socials.blog}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-lg bg-[var(--ink-2)] border border-[var(--rule)] text-[var(--bone-dim)] hover:text-[var(--amber)] hover:border-[var(--amber)]/40 transition-all"
+              aria-label="Technical Blog"
+              title="Technical Blog"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+            </a>
             <a
               href={personalData.socials.github}
               target="_blank"

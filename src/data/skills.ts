@@ -49,6 +49,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "AWS (EC2, RDS, S3, ECR)", level: "Production", highlight: true, description: "Production compute, managed databases, asset storage" },
       { name: "Docker & Containerization", level: "Production", highlight: true, description: "Multi-stage builds, slim images, container isolation" },
       { name: "Kubernetes & CNCF Tools", level: "Proficient", highlight: true, description: "Pods, services, manifests, cloud-native ecosystem" },
+      { name: "ClickHouse Deployment", level: "Production", highlight: true, description: "OLAP" },
       { name: "GitHub Actions & CI/CD", level: "Production", highlight: true, description: "Automated testing, container builds, zero-downtime deploys" },
       { name: "Linux Server Administration", level: "Advanced", highlight: true, description: "Systemd, kernel tuning, networking, process monitoring" },
       { name: "Prometheus & Observability", level: "Proficient", highlight: false, description: "System metrics, alert pipelines, performance monitoring" },

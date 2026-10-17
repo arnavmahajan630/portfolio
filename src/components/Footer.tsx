@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ArrowUp, Mail } from "lucide-react";
+import { ArrowUp, Mail, BookOpen } from "lucide-react";
 import { personalData } from "@/data/personal";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 
@@ -31,6 +31,16 @@ export default function Footer() {
 
         {/* Center: Social Links */}
         <div className="flex items-center gap-2.5">
+          <a
+            href={personalData.socials.blog}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-lg bg-[var(--ink-2)] border border-[var(--rule)] text-[var(--bone-dim)] hover:text-[var(--amber)] transition-colors"
+            aria-label="Technical Blog"
+            title="Technical Blog"
+          >
+            <BookOpen className="w-3.5 h-3.5" />
+          </a>
           <a
             href={personalData.socials.github}
             target="_blank"

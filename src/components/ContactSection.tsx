@@ -12,6 +12,7 @@ import {
   MapPin,
   Sparkles,
   ExternalLink,
+  BookOpen,
   Loader2,
   AlertCircle,
   RotateCcw,
@@ -237,7 +238,7 @@ export default function ContactSection() {
 
 
             {/* Socials Grid */}
-            <div className="grid grid-cols-2 gap-3 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <a
                 href={personalData.socials.github}
                 target="_blank"
@@ -262,6 +263,22 @@ export default function ContactSection() {
                   <span className="text-xs font-bold text-[var(--bone)] block">LinkedIn</span>
                   <span className="text-[10px] text-[var(--bone-dim)]">/in/arnavmahajan630</span>
                 </div>
+              </a>
+
+              <a
+                href={personalData.socials.blog}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-4 rounded-lg glass-panel border-[var(--rule)] hover:border-[var(--amber)] flex items-center justify-between gap-3 transition-all group font-mono sm:col-span-2"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <BookOpen className="w-4 h-4 text-[var(--amber)] group-hover:scale-110 transition-transform shrink-0" />
+                  <div className="truncate">
+                    <span className="text-xs font-bold text-[var(--bone)] block">Technical Blog</span>
+                    <span className="text-[10px] text-[var(--bone-dim)] truncate">arnavlogs.hashnode.dev</span>
+                  </div>
+                </div>
+                <ExternalLink className="w-3.5 h-3.5 text-[var(--bone-dim)] group-hover:text-[var(--amber)] transition-colors shrink-0" />
               </a>
             </div>
           </div>
